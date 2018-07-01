@@ -10,10 +10,11 @@ app.use(express.urlencoded({
   extended: true,
 }));
 
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
+
 app.get('/', (req, res) => {
-  res.send({
-    message: 'it works',
-  });
+  res.render('index');
 });
 
 server.listen(3000, () => {
