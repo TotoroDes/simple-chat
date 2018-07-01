@@ -9,6 +9,12 @@
         <link rel="stylesheet" href="/styles/Form.css">
     </head>
     <body>
+        <ul id="chatHistory">
+            <% chatMessages.forEach(function(message){ %>
+            <%- include('chat/message', {message: message}); %>
+            <% }); %>
+        </ul>
+
         <form action="/chat" class="Form" method="post">
             <fieldset>
                 <div class="Form-field">
@@ -22,5 +28,8 @@
                 <button type="submit">Send</button>
             </fieldset>
         </form>
+        <script src="/scripts/ChatForm.js"></script>
+        <script src="/scripts/ChatHistory.js"></script>
+        <script src="/scripts/app.js"></script>
     </body>
 </html>

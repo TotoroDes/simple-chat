@@ -2,6 +2,8 @@ const express = require('express');
 const http = require('http');
 const UUID = require('uuid/v4');
 const logger = require('./src/utils/logger');
+const multer = require('multer');
+const upload = multer();
 
 const app = express();
 const server = http.createServer(app);
@@ -20,7 +22,9 @@ app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {
+    chatMessages,
+  });
 });
 
 app.get('/chat', (req, res) => {
@@ -31,7 +35,7 @@ app.get('/chat/new_message', (req, res) => {
   clients.push(res);
 });
 
-app.post('/chat', (req, res) => {
+app.post('/chat', upload.fields([]), (req, res) => {
   const msg = Object.assign({
     id: UUID(),
   }, req.body.message);
