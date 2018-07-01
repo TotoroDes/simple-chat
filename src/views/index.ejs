@@ -6,8 +6,17 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Chat</title>
+        <link rel="stylesheet" href="/styles/Form.css">
     </head>
     <body>
-        <h1>Welcome!</h1>
+        <form action="/chat" class="Form">
+            <fieldset>
+                <div class="Form-field">
+                    <label class="Form-label" for="chatMessage">Message</label>
+                    <textarea name="message" id="chatMessage" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit">Send</button>
+            </fieldset>
+        </form>
     </body>
 </html>
