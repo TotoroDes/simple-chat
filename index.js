@@ -7,6 +7,7 @@ const app = express();
 const server = http.createServer(app);
 
 const chatMessages = [];
+let clients = [];
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -26,6 +27,10 @@ app.get('/chat', (req, res) => {
   res.status(200).send(chatMessages);
 });
 
+app.get('/chat/new_message', (req, res) => {
+  clients.push(res);
+});
+
 app.post('/chat', (req, res) => {
   const msg = Object.assign({
     id: UUID(),
@@ -34,6 +39,12 @@ app.post('/chat', (req, res) => {
   chatMessages.push(msg);
 
   logger.info('Created message', msg);
+
+  clients.forEach(client => {
+    return client.status(200).send(msg);
+  });
+
+  clients = [];
 
   res.status(201).send(msg);
 });
