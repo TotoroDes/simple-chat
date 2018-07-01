@@ -9,11 +9,15 @@
         <link rel="stylesheet" href="/styles/Form.css">
     </head>
     <body>
-        <form action="/chat" class="Form">
+        <form action="/chat" class="Form" method="post">
             <fieldset>
                 <div class="Form-field">
-                    <label class="Form-label" for="chatMessage">Message</label>
-                    <textarea name="message" id="chatMessage" cols="30" rows="10"></textarea>
+                    <label for="messageAuthor">Author:</label>
+                    <input type="text" name="message[author]">
+                </div>
+                <div class="Form-field">
+                    <label class="Form-label" for="messageText">Message</label>
+                    <textarea name="message[text]" id="messageText" cols="30" rows="10"></textarea>
                 </div>
                 <button type="submit">Send</button>
             </fieldset>
